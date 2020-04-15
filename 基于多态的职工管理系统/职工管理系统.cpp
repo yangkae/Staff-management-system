@@ -52,6 +52,7 @@ int main()
 			wm.Mod_Emp();
 			break;
 		case 5: //查找职工
+			wm.Find_Emp();
 			break;
 		case 6: //排序职工
 			break;
