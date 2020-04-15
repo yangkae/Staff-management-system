@@ -32,7 +32,7 @@ int main()
 	{
 		//调用展示菜单成员函数
 		wm.Show_Menu();
-		cout << "请输入您的选择" << endl;
+		cout << "请输入您的选择:" << endl;
 		cin >> choice;
 		switch (choice)
 		{

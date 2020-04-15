@@ -10,7 +10,7 @@ WorkerManager::WorkerManager()
 
 	if (!ifs.is_open())
 	{
-		cout << "文件不存在" << endl;
+		//cout << "文件不存在" << endl;
 
 		//初始化记录人数
 		this->m_EmpNum = 0;
@@ -28,7 +28,7 @@ WorkerManager::WorkerManager()
 	if (ifs.eof())
 	{
 		//文件为空
-		cout << "文件为空" << endl;
+		//cout << "文件为空" << endl;
 		//初始化记录人数
 		this->m_EmpNum = 0;
 		//初始化数组指针
@@ -41,7 +41,7 @@ WorkerManager::WorkerManager()
 
 	//3.文件存在，并且记录着数据
 	int num = this->get_EmpNum();
-	cout << "职工人数为： " << num << endl;
+	//cout << "职工人数为： " << num << endl;
 	this->m_EmpNum = num;
 	 
 	//开辟空间
@@ -49,12 +49,12 @@ WorkerManager::WorkerManager()
 	//将文件中的数据存到数组中
 	this->init_Emp();
 
-	for (int i = 0; i < this->m_EmpNum; i++)
+	/*for (int i = 0; i < this->m_EmpNum; i++)
 	{
 		cout << "职工号： " << this->m_EmpArray[i]->m_Id
 			<< " 职工姓名： " << this->m_EmpArray[i]->m_Name
 			<< " 部门编号： " << this->m_EmpArray[i]->m_DepId << endl;
-	}
+	}*/
 
 
 }
