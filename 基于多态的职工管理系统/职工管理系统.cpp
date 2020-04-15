@@ -4,6 +4,8 @@ using namespace std;
 
 #include "employee.h"
 #include "worker.h"
+#include "manager.h"
+#include "boss.h"
 
 int main()
 {
@@ -11,6 +13,15 @@ int main()
 	Worker * worker = NULL;
 	worker = new Employee(1, "张三", 1);
 	worker->showInfo();
+	delete worker;
+
+	worker = new Manager(2, "李四", 2);
+	worker->showInfo();
+	delete worker;
+
+	worker = new Boss(3, "王五", 3);
+	worker->showInfo();
+	delete worker;
 
 	//实例化管理者对象
 	WorkerManager wm;
