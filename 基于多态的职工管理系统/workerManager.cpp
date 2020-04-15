@@ -3,6 +3,25 @@
 
 WorkerManager::WorkerManager()
 {
+
+	//1.文件不存在
+	ifstream ifs;
+	ifs.open(FILENAME, ios::in);//读文件
+
+	if (!ifs.is_open())
+	{
+		cout << "文件不存在" << endl;
+
+		//初始化记录人数
+		this->m_EmpNum = 0;
+		//初始化数组指针
+		this->m_EmpArray = NULL;
+		//初始化文件是否为空
+		m_FileIsEmpty = true;
+		ifs.close();
+		return;
+	}
+	//初始化属性
 	this->m_EmpNum = 0;
 
 	this->m_EmpArray = NULL;
@@ -82,8 +101,10 @@ void WorkerManager::Add_Emp()
 			{
 			case 1:
 				worker = new Employee(id, name, 1);
+				break;
 			case 2:
 				worker = new Manager(id, name, 2);
+				break;
 			case 3:
 				worker = new Boss(id, name, 3);
 			default:
@@ -105,14 +126,44 @@ void WorkerManager::Add_Emp()
 
 		//提示成功添加
 		cout << "成功添加" << addNum << "名新职工" << endl;
+
+		//保存数据到文件中
+		this->save();
 	}
 	else
 	{
 		cout << "输入数据有误" << endl;
 	}
+
+	//按任意键后，清屏返回上级目录
+	system("pause");
+	system("cls");
 }
+
+//保存文件
+void WorkerManager::save()
+{
+	ofstream ofs;
+	ofs.open(FILENAME, ios::out);
+
+	//将每个人的数据写入到文件
+	for (int i = 0; i < this->m_EmpNum; i++)
+	{
+		ofs << this->m_EmpArray[i]->m_Id << " "
+			<< this->m_EmpArray[i]->m_Name << " "
+			<< this->m_EmpArray[i]->m_DepId << endl;
+	
+	}
+	ofs.close();
+
+}
+
 
 WorkerManager::~WorkerManager()
 {
-
+	if (this->m_EmpArray != NULL)
+	{
+		delete[] this->m_EmpArray;
+		this->m_EmpArray = NULL;
+	}
 }
