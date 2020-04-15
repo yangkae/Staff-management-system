@@ -2,8 +2,16 @@
 #include "workerManager.h"
 using namespace std;
 
+#include "employee.h"
+#include "worker.h"
+
 int main()
 {
+
+	Worker * worker = NULL;
+	worker = new Employee(1, "张三", 1);
+	worker->showInfo();
+
 	//实例化管理者对象
 	WorkerManager wm;
 
