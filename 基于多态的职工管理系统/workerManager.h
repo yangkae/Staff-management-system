@@ -8,6 +8,10 @@ public:
 	//构造函数
 	WorkerManager();
 
+	//展示菜单
+	void Show_Menu();
+
+
 	//析构函数
 	~WorkerManager();
 };
