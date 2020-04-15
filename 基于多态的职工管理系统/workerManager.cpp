@@ -44,8 +44,17 @@ WorkerManager::WorkerManager()
 	cout << "职工人数为： " << num << endl;
 	this->m_EmpNum = num;
 	 
+	//开辟空间
+	this->m_EmpArray = new Worker *[this->m_EmpNum];
+	//将文件中的数据存到数组中
+	this->init_Emp();
 
-
+	for (int i = 0; i < this->m_EmpNum; i++)
+	{
+		cout << "职工号： " << this->m_EmpArray[i]->m_Id
+			<< " 职工姓名： " << this->m_EmpArray[i]->m_Name
+			<< " 部门编号： " << this->m_EmpArray[i]->m_DepId << endl;
+	}
 
 
 }
@@ -200,6 +209,39 @@ int WorkerManager::get_EmpNum()
 	}
 	return num;
 
+}
+
+//初始化员工
+void WorkerManager::init_Emp()
+{
+	ifstream ifs;
+	ifs.open(FILENAME, ios::in);
+
+	int id;
+	string name;
+	int dId;
+
+	int index = 0;
+	while (ifs >> id && ifs >> name && ifs >> dId)
+	{
+		Worker * worker = NULL;
+
+		if (dId == 1)  // 1普通员工
+		{
+			worker = new Employee(id, name, dId);
+		}
+		else if (dId == 2) //2经理
+		{
+			worker = new Manager(id, name, dId);
+		}
+		else //老板
+		{
+			worker = new Boss(id, name, dId);
+		}
+		this->m_EmpArray[index] = worker;
+		index++;
+	}
+	ifs.close();
 }
 
 WorkerManager::~WorkerManager()

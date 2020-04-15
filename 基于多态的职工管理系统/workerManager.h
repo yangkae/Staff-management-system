@@ -1,7 +1,7 @@
 #pragma once //防止头文件重复包含
 #include <iostream> //包含输入输入流头文件
 using namespace std; //使用标准命名空间
-
+#include <string>
 #include "worker.h"
 #include "employee.h"
 #include "manager.h"
@@ -39,6 +39,9 @@ public:
 
 	//统计文件中人数
 	int get_EmpNum();
+
+	//初始化员工
+	void init_Emp();
 
 
 	//析构函数
