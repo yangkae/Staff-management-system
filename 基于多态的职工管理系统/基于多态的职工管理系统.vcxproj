@@ -123,7 +123,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="workerManager.cpp" />
     <ClCompile Include="职工管理系统.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="workerManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

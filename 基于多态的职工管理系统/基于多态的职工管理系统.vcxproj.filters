@@ -18,5 +18,13 @@
     <ClCompile Include="职工管理系统.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="workerManager.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="workerManager.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
