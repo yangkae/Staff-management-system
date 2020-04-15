@@ -318,6 +318,7 @@ int WorkerManager::IsExist(int id)
 	return index;
 }
 
+
 //修改职工
 void WorkerManager::Mod_Emp()
 {
@@ -333,11 +334,11 @@ void WorkerManager::Mod_Emp()
 
 		int ret = this->IsExist(id);
 		if (ret != -1)
-		{ 
+		{
 			//查找到编号的职工
 
 			delete this->m_EmpArray[ret];
-			
+
 			int newId = 0;
 			string newName = "";
 			int dSelect = 0;
@@ -357,10 +358,10 @@ void WorkerManager::Mod_Emp()
 			Worker * worker = NULL;
 			switch (dSelect)
 			{
-			case1:
+			case 1:
 				worker = new Employee(newId, newName, dSelect);
 				break;
-			case2:
+			case 2:
 				worker = new Manager(newId, newName, dSelect);
 				break;
 			case 3:
@@ -371,8 +372,8 @@ void WorkerManager::Mod_Emp()
 			}
 
 			//更改数据 到数组中
-			this->m_EmpArray[ret]= worker;
-			
+			this->m_EmpArray[ret] = worker;
+
 			cout << "修改成功！" << endl;
 
 			//保存到文件中

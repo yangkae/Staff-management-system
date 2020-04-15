@@ -55,6 +55,9 @@ public:
 	//修改职工
 	void Mod_Emp();
 
+	//查找职工
+	void Find_Emp();
+
 	//析构函数
 	~WorkerManager();
 };
