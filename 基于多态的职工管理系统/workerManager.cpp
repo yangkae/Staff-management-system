@@ -263,6 +263,132 @@ void WorkerManager::Show_Emp()
 	system("cls");
 }
 
+//删除职工
+void WorkerManager::Del_Emp()
+{
+	if (this->m_FileIsEmpty)
+	{
+		cout << "文件不存在或记录为空！" << endl;
+	}
+	else
+	{
+		//按职工编号删除
+		cout << "请输入想要删除的职工号：" << endl;
+		int id = 0;
+		cin >> id;
+
+		int index = this->IsExist(id);
+
+		if (index != -1)  //说明index上位置数据需要删除
+		{
+			for (int i = index; i < this->m_EmpNum - 1; i++)
+			{
+				this->m_EmpArray[i] = this->m_EmpArray[i + 1];
+			}
+			this->m_EmpNum--;
+
+			this->save(); //删除后数据同步到文件中
+			cout << "删除成功！" << endl;
+		}
+		else
+		{
+			cout << "删除失败，未找到该职工" << endl;
+		}
+	}
+
+	system("pause");
+	system("cls");
+}
+
+//按照职工编号判断职工是否存在,若存在返回职工在数组中位置，不存在返回-1
+int WorkerManager::IsExist(int id)
+{
+	int index = -1;
+
+	for (int i = 0; i < this->m_EmpNum; i++)
+	{
+		if (this->m_EmpArray[i]->m_Id == id)
+		{
+			//找到职工
+			index = i;
+
+			break;
+		}
+	}
+	return index;
+}
+
+//修改职工
+void WorkerManager::Mod_Emp()
+{
+	if (this->m_FileIsEmpty)
+	{
+		cout << "文件不存在或记录为空！" << endl;
+	}
+	else
+	{
+		cout << "请输入修改职工的编号：" << endl;
+		int id;
+		cin >> id;
+
+		int ret = this->IsExist(id);
+		if (ret != -1)
+		{ 
+			//查找到编号的职工
+
+			delete this->m_EmpArray[ret];
+			
+			int newId = 0;
+			string newName = "";
+			int dSelect = 0;
+
+			cout << "查到： " << id << "号职工，请输入新职工号： " << endl;
+			cin >> newId;
+
+			cout << "请输入新姓名： " << endl;
+			cin >> newName;
+
+			cout << "请输入岗位： " << endl;
+			cout << "1、普通职工" << endl;
+			cout << "2、经理" << endl;
+			cout << "3、老板" << endl;
+			cin >> dSelect;
+
+			Worker * worker = NULL;
+			switch (dSelect)
+			{
+			case1:
+				worker = new Employee(newId, newName, dSelect);
+				break;
+			case2:
+				worker = new Manager(newId, newName, dSelect);
+				break;
+			case 3:
+				worker = new Boss(newId, newName, dSelect);
+				break;
+			default:
+				break;
+			}
+
+			//更改数据 到数组中
+			this->m_EmpArray[ret]= worker;
+			
+			cout << "修改成功！" << endl;
+
+			//保存到文件中
+			this->save();
+		}
+		else
+		{
+			cout << "修改失败，查无此人" << endl;
+		}
+	}
+
+	//按任意键 清屏
+	system("pause");
+	system("cls");
+}
+
 WorkerManager::~WorkerManager()
 {
 	if (this->m_EmpArray != NULL)
